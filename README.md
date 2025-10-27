@@ -12,7 +12,6 @@ Projeto de calendário para a FATEC que extrai automaticamente eventos acadêmic
 
 ## Requisitos
 - Bun (runtime JavaScript)
-- Node.js 14+
 - Chaves de API: Todoist e Google Gemini
 - Variáveis de ambiente configuradas
 
