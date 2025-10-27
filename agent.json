@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "properties": {
+    "institution": {
+      "description": "Nome da instituição",
+      "type": "string"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 2000,
+      "maximum": 2100
+    },
+    "semester": {
+      "description": "Semestre do calendário (1 ou 2)",
+      "type": "string",
+      "enum": [
+        "1",
+        "2"
+      ]
+    },
+    "months": {
+      "description": "Lista dos meses cobertos",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "description": "Nome do mês",
+            "type": "string"
+          },
+          "events": {
+            "description": "Eventos ocorridos no mês",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start_date": {
+                  "description": "Data de início do evento (YYYY-MM-DD)",
+                  "type": "string"
+                },
+                "end_date": {
+                  "description": "Data de término do evento, se for um intervalo",
+                  "type": "string"
+                },
+                "dates": {
+                  "description": "Lista de datas específicas",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "description": {
+                  "description": "Descrição detalhada do evento acadêmico",
+                  "type": "string"
+                },
+                "category": {
+                  "description": "Classificação do tipo de evento",
+                  "type": "string",
+                  "enum": [
+                    "feriado",
+                    "sem_aula",
+                    "avaliacao",
+                    "matricula",
+                    "evento_institucional",
+                    "reposicao",
+                    "outro"
+                  ]
+                },
+                "has_class": {
+                  "description": "Indica se há aula neste dia",
+                  "type": "boolean"
+                },
+                "notes": {
+                  "description": "Campo opcional para observações",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "category",
+                "has_class"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "month",
+          "events"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_school_days": {
+          "description": "Total de dias letivos",
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "year",
+    "semester",
+    "months"
+  ],
+  "additionalProperties": false
+}
